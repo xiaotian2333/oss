@@ -10,7 +10,7 @@ if [ -d "node_modules/icqq/lib/core" ]; then
    echo -e "\e[1;36m  感谢选择咸鱼gx_xiaotian\e[0m"
    echo -e "\e[1;36m  正在尝试修复\e[0m"
 else  
-   echo -e "\e[1;36m  感谢选择咸鱼gx_xiaotian\e[0m"
+   echo -e "\e[1;36m感谢选择咸鱼gx_xiaotian\e[0m"
    echo -e "\e[1;31mYunzai-Bot/node_modules/icqq/lib/core文件夹不存在\e[0m"
    echo -e "\e[1;32m请在云崽根目录启动脚本\e[0m"
    exit
