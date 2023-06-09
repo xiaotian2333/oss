@@ -7,10 +7,10 @@ cd /root/Yunzai-Bot
 cd Yunzai-Bot
 clear
 if [ -d "node_modules/icqq/lib/core" ]; then  
-   echo -e "\e[1;36m  感谢选择咸鱼gx_xiaotian\e[0m"
+   echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
    echo -e "\e[1;36m  正在尝试修复\e[0m"
 else  
-   echo -e "\e[1;36m感谢选择咸鱼gx_xiaotian\e[0m"
+   echo -e "\e[1;36m感谢选择咸鱼xiaotian\e[0m"
    echo -e "\e[1;31mYunzai-Bot/node_modules/icqq/lib/core文件夹不存在\e[0m"
    echo -e "\e[1;32m请在云崽根目录启动脚本\e[0m"
    exit
@@ -38,7 +38,7 @@ version_compare() {
 pnpm update icqq
 # 判断是否执行成功
 if [ $? -eq 0 ]; then
-  echo -e "\e[1;36m  感谢选择咸鱼gx_xiaotian\e[0m"
+  echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
   echo -e "\e[1;36m  正在执行更新\e[0m"
 else 
   sed -i -E 's/"icqq": "[^"]+"/"icqq": "^0.3.15"/' package.json
@@ -82,12 +82,12 @@ npm run stop
 clear
 # 删除旧设备文件
 read -p "按下回车键删除旧虚拟设备文件，否则ctrl+c"
-echo -e "\e[1;36m  感谢选择咸鱼gx_xiaotian\e[0m"
+echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
 echo -e "\e[1;31m  正在删除\e[0m"
 rm -rf data/device.json
 rm -rf data/icqq
 sleep 1
 # 运行结束
 echo -e "\e[1;36m  脚本运行完毕，请正常启动云仔\e[0m"
-echo -e "\e[1;36m  感谢选择咸鱼gx_xiaotian\e[0m"
+echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
 exit
