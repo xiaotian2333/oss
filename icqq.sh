@@ -7,8 +7,10 @@ cd /root/Yunzai-Bot
 cd Yunzai-Bot
 clear
 if [ -d "node_modules/icqq/lib/core" ]; then  
+   echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
    echo -e "\e[1;36m  正在尝试修复\e[0m"
 else  
+   echo -e "\e[1;36m感谢选择咸鱼xiaotian\e[0m"
    echo -e "\e[1;31mYunzai-Bot/node_modules/icqq/lib/core文件夹不存在\e[0m"
    echo -e "\e[1;32m请在云崽根目录启动脚本\e[0m"
    exit
@@ -30,12 +32,13 @@ done
 version_compare() {
     for i in "${!required_version_parts[@]}"; do
         if [ "${current_version_parts[i]}" -lt "${required_version_parts[i]}" ]; then
-            echo "$result，低于要求的版本号0.3.15"
-            echo -e "\e[1;32m  将 ICQQ 更新至当前最新版本\e[0m"
+            echo "$result，低于要求的版本号"
+            echo -e "\e[1;32m  更新至当前最新版本\e[0m"
 # 规则更新
 pnpm update icqq
 # 判断是否执行成功
 if [ $? -eq 0 ]; then
+  echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
   echo -e "\e[1;36m  正在执行更新\e[0m"
 else 
   sed -i -E 's/"icqq": "[^"]+"/"icqq": "^0.3.15"/' package.json
@@ -49,27 +52,21 @@ else
 fi
             return
         elif [ "${current_version_parts[i]}" -gt "${required_version_parts[i]}" ]; then
-            echo "$result，高于要求的版本号0.3.15"
-            echo -e "\e[1;33m  不太确定你是否需要\e[0m"
-            echo -e "\e[1;32m  如果需要请回车\e[0m"
-            read -p "按下回车键继续..."
+            echo "$result，高于要求的版本号"
+            echo -e "\e[1;32m  继续运行吗\e[0m"
+            read -p "按下回车键继续，否则ctrl+c"
             return
         fi
     done
     echo "$result"
     echo -e "\e[1;33m  版本是正常的\e[0m"
     echo -e "\e[1;32m  回车继续将删除设备文件并切换协议6\e[0m"
-    read -p "按下回车键继续..."
+    read -p "按下回车键继续，否则ctrl+c"
 }
 # 调用version_compare函数
 version_compare
 
-echo -e "\e[1;33m  删除旧虚拟设备文件\e[0m"
-rm -rf data/device.json
-rm -rf data/icqq
-sleep 1
-
-echo -e "\e[1;33m  修改登录协议为 6 安卓手机8.8.88\e[0m"
+echo -e "\e[1;33m  修改登录协议\e[0m"
 # 首先，需要指定要修改的文件
 file="config/config/qq.yaml"
 # 然后，指定要替换的内容
@@ -78,11 +75,19 @@ new="platform: 6"
 # 使用sed命令来替换文件中的内容
 sed -i "s/$old/$new/g" $file
 sleep 1
-
-echo -e "\e[1;31m  停止Yzai\e[0m"
+# 停止可能还在运行的后台云仔
+echo -e "\e[1;31m  停止云仔\e[0m"
 pnpm stop
 npm run stop
 clear
+# 删除旧设备文件
+read -p "按下回车键删除旧虚拟设备文件，否则ctrl+c"
+echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
+echo -e "\e[1;31m  正在删除\e[0m"
+rm -rf data/device.json
+rm -rf data/icqq
+sleep 1
+# 运行结束
 echo -e "\e[1;36m  脚本运行完毕，请正常启动云仔\e[0m"
-echo -e "\e[1;36m  咸鱼-gx_xiaotian\e[0m"
+echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
 exit
