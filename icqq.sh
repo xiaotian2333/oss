@@ -20,7 +20,7 @@ fi
 result=$(npm list icqq | awk '/icqq/{print $2}')
 # 将版本号以.为分隔符分成三部分，存储到数组中
 IFS='.' read -ra current_version_parts <<< "$result"
-IFS='.' read -ra required_version_parts <<< "0.3.15"
+IFS='.' read -ra required_version_parts <<< "0.4.7"
 # 将字符型数组转换成数值型数组
 for i in "${!current_version_parts[@]}"; do
     current_version_parts[$i]=$(echo "${current_version_parts[$i]}" | sed 's/[^0-9]*//g')
@@ -35,13 +35,13 @@ version_compare() {
             echo "$result，低于要求的版本号"
             echo -e "\e[1;32m  更新至当前最新版本\e[0m"
 # 规则更新
-pnpm update icqq
+pnpm update icqq@0.4.7
 # 判断是否执行成功
 if [ $? -eq 0 ]; then
   echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
   echo -e "\e[1;36m  正在执行更新\e[0m"
 else 
-  sed -i -E 's/"icqq": "[^"]+"/"icqq": "^0.3.15"/' package.json
+  sed -i -E 's/"icqq": "[^"]+"/"icqq": "^0.4.7"/' package.json
   echo "" | pnpm install -P
   # 判断是否执行成功
 if [ $? -eq 0 ]; then
@@ -60,7 +60,7 @@ fi
     done
     echo "$result"
     echo -e "\e[1;33m  版本是正常的\e[0m"
-    echo -e "\e[1;32m  回车继续将删除设备文件并切换协议6\e[0m"
+    echo -e "\e[1;32m  回车继续将删除设备文件并切换协议\e[0m"
     read -p "按下回车键继续，否则ctrl+c"
 }
 # 调用version_compare函数
@@ -71,10 +71,24 @@ echo -e "\e[1;33m  修改登录协议\e[0m"
 file="config/config/qq.yaml"
 # 然后，指定要替换的内容
 old="platform: [0-6]"
-new="platform: 6"
+new="platform: 1"
 # 使用sed命令来替换文件中的内容
 sed -i "s/$old/$new/g" $file
 sleep 1
+
+# 修改为使用本地api
+echo -e "\e[1;33m  修改登录api为本地\e[0m"
+rm -rf config/config/bot.yaml
+sleep 1
+cd config/config/ && curl -L https://oss.xt-url.com/yunzai-res/bot.yaml -O && cd ../..
+sleep 1
+
+# 修改icqq文件
+rm -rf node_modules/icqq/lib/core/device.js
+sleep 1
+cd node_modules/icqq/lib/core/ && curl -L https://oss.xt-url.com/yunzai-res/device.js -O && cd ../../../..
+sleep 1
+
 # 停止可能还在运行的后台云仔
 echo -e "\e[1;31m  停止云仔\e[0m"
 pnpm stop
