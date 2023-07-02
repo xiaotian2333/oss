@@ -20,7 +20,7 @@ fi
 result=$(npm list icqq | awk '/icqq/{print $2}')
 # 将版本号以.为分隔符分成三部分，存储到数组中
 IFS='.' read -ra current_version_parts <<< "$result"
-IFS='.' read -ra required_version_parts <<< "0.4.7"
+IFS='.' read -ra required_version_parts <<< "0.4.8"
 # 将字符型数组转换成数值型数组
 for i in "${!current_version_parts[@]}"; do
     current_version_parts[$i]=$(echo "${current_version_parts[$i]}" | sed 's/[^0-9]*//g')
@@ -32,16 +32,16 @@ done
 version_compare() {
     for i in "${!required_version_parts[@]}"; do
         if [ "${current_version_parts[i]}" -lt "${required_version_parts[i]}" ]; then
-            echo "$result，低于要求的版本号"
+            echo "当前版本为$result，低于要求的版本号"
             echo -e "\e[1;32m  更新至当前最新版本\e[0m"
 # 规则更新
-pnpm update icqq@0.4.7
+pnpm update icqq@0.4.8
 # 判断是否执行成功
 if [ $? -eq 0 ]; then
   echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
   echo -e "\e[1;36m  正在执行更新\e[0m"
 else 
-  sed -i -E 's/"icqq": "[^"]+"/"icqq": "^0.4.7"/' package.json
+  sed -i -E 's/"icqq": "[^"]+"/"icqq": "^0.4.8"/' package.json
   echo "" | pnpm install -P
   # 判断是否执行成功
 if [ $? -eq 0 ]; then
