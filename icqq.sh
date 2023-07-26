@@ -19,7 +19,7 @@ else
 fi
 
 # 统一定义ICQQ版本号
-ICQQ=0.4.11
+ICQQ=0.4.12
 
 # 获取icqq包的依赖关系树，并用awk提取出icqq的那行
 result=$(npm list icqq | awk '/icqq/{print $2}')
