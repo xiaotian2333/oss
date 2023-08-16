@@ -19,7 +19,7 @@ else
 fi
 
 # 统一定义ICQQ版本号
-ICQQ=0.4.12
+ICQQ=0.5.0
 
 # 获取icqq包的依赖关系树，并用awk提取出icqq的那行
 result=$(npm list icqq | awk '/icqq/{print $2}')
@@ -87,13 +87,6 @@ rm -rf config/config/bot.yaml
 sleep 1
 cd config/config/ && curl -s -L https://oss.xt-url.com/yunzai-res/bot.yaml -O && cd ../..
 sleep 1
-
-# 修改icqq文件
-# 这一段貌似不需要了，先注释掉
-# rm -rf node_modules/icqq/lib/core/device.js
-# sleep 1
-# cd node_modules/icqq/lib/core/ && curl -s -L https://oss.xt-url.com/yunzai-res/device.js -O && cd ../../../..
-# sleep 1
 
 # 停止可能还在运行的后台云仔
 echo -e "\e[1;31m  停止云仔\e[0m"
