@@ -1,4 +1,6 @@
-unzip sign.zip -d xiaotian
+cd ..
+
+unzip sign.zip -d ./xiaotian
 
 cd xiaotian
 
