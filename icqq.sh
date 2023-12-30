@@ -9,17 +9,15 @@ clear
 if [ -d "node_modules/icqq/lib/core" ]; then  
    echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
    echo -e "\e[1;36m  正在尝试修复\e[0m"
-   curl -s -H "User-Agent: icqq.sh"  -d "type=start" --referer "http://api.xt-url.com/" "http://api.xt-url.com/"
 else  
    echo -e "\e[1;36m感谢选择咸鱼xiaotian\e[0m"
    echo -e "\e[1;31mYunzai-Bot/node_modules/icqq/lib/core文件夹不存在\e[0m"
    echo -e "\e[1;32m请在云崽根目录启动脚本\e[0m"
-   curl -s -H "User-Agent: Edg" -d "type=fail" --referer "http://api.xt-url.com/" "http://api.xt-url.com/"
    exit
 fi
 
 # 统一定义ICQQ版本号
-ICQQ=0.5.0
+ICQQ=0.6.6
 
 # 获取icqq包的依赖关系树，并用awk提取出icqq的那行
 result=$(npm list icqq | awk '/icqq/{print $2}')
@@ -119,5 +117,4 @@ sleep 2
 # 运行结束
 echo -e "\e[1;36m  脚本运行完毕，请正常启动云仔\e[0m"
 echo -e "\e[1;36m  感谢选择咸鱼xiaotian\e[0m"
-curl -s -H "User-Agent: icqq.sh" -d "type=done" --referer "http://api.xt-url.com/" http://api.xt-url.com/
 exit
