@@ -1,7 +1,20 @@
-cd ..
+#!/bin/bash
 
-unzip sign.zip -d ./xiaotian
+# 解压文件
+unzip sign.zip
 
-cd xiaotian
+# 输出各目录下的文件
+echo -e "\e[1;36m主目录文件\e[0m"
+ls
 
-bash app
+echo -e "\e[1;36mbin目录文件\e[0m"
+cd bin && ls && cd ..
+
+echo -e "\e[1;36mlib目录文件\e[0m"
+cd lib && ls && cd ..
+
+echo -e "\e[1;36mtxlib目录文件\e[0m"
+cd txlib && ls && cd ..
+
+# 启动
+bash app.sh
