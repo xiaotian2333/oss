@@ -22,3 +22,4 @@ cd txlib && ls && cd ..
 echo -e "\e[1;36m===============\e[0m"
 # 启动
 bash app.sh
+exit
